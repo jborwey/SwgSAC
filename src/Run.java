@@ -36,15 +36,15 @@ public class Run {
 //        System.out.print("Willpower: ");int willpower = sc.nextInt();
 
         // Weapon Special Action Costs (SAC)
-        String weaponType = "pike";
-        int healthCost = 17;
-        int actionCost = 19;
-        int mindCost = 21;
+        String weaponType = "baton";
+        int healthCost = 8;
+        int actionCost = 39;
+        int mindCost = 34;
 
         // Armor Encumbrance
         int healthEncumbrance = 130;
         int actionEncumbrance = 40;
-        int mindEncumbrance = 95;
+        int mindEncumbrance = 188;
 
         // Food buff stat bonuses
         int gruuvanShall = (430*2);
@@ -59,7 +59,7 @@ public class Run {
          * HEALTH
          */
         int health = 400;
-        int strength = 700;
+        int strength = 400;
         int constitution = 400;
         /**
          * ACTION
@@ -71,8 +71,8 @@ public class Run {
          * MIND
          */
         int mind = 400;
-        int focus = 1000;
-        int willpower = 700;
+        int focus = 1100;
+        int willpower = 900;
 
         int totalHAM = health + strength + constitution +
                 action + quickness + stamina +
@@ -97,9 +97,9 @@ public class Run {
         double mindSAC = specialAttackCost.getTotalSAC(weapon.getMindSAC(), weapon.getmAttackMod(), stats.getFocus(), miniSuit.getMindEncumbrance());
 
         RegenerationTime regenSpeed = new RegenerationTime();
-        double healthRegen = regenSpeed.timeToRegen(constitution);
-        double actionRegen = regenSpeed.timeToRegen(stamina);
-        double mindRegen = regenSpeed.timeToRegen(willpower);
+        double healthRegen = regenSpeed.timeToRegen(stats.getConstitution());
+        double actionRegen = regenSpeed.timeToRegen(stats.getStamina());
+        double mindRegen = regenSpeed.timeToRegen(stats.getWillpower());
 
         System.out.println();
         System.out.print("The total SAC per attack is:\n");
