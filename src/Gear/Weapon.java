@@ -8,26 +8,31 @@ public class Weapon {
     private int healthSAC;
     private int actionSAC;
     private int mindSAC;
-    private double hAttackMod;
-    private double aAttackMod;
-    private double mAttackMod;
+    private double healthCostMultiplier;
+    private double actionCostMultiplier;
+    private double mindCostMultiplier;
 
 
     public void newWeapon(String weaponType, int healthCost, int actionCost, int mindCost){
         if(weaponType.equalsIgnoreCase("vk") || weaponType.equalsIgnoreCase("vibro knuckler")){
-            this.hAttackMod = 1.5;
-            this.aAttackMod = 1.5;
-            this.mAttackMod = 1.5;
+            this.healthCostMultiplier = 1.5;
+            this.actionCostMultiplier = 1.5;
+            this.mindCostMultiplier = 1.5;
         }
         else if(weaponType.equalsIgnoreCase("baton") || weaponType.equalsIgnoreCase("vibro knuckler")){
-            this.hAttackMod = 1.25;
-            this.aAttackMod = 1.25;
-            this.mAttackMod = 2.0;
+            this.healthCostMultiplier = 1.25;
+            this.actionCostMultiplier = 1.25;
+            this.mindCostMultiplier = 2.0;
+        }
+        else if(weaponType.equalsIgnoreCase("hammer") || weaponType.equalsIgnoreCase("polearm")){
+            this.healthCostMultiplier = 1.5;
+            this.actionCostMultiplier = 2.0;
+            this.mindCostMultiplier = 1.5;
         }
         else if(weaponType.equalsIgnoreCase("pike") || weaponType.equalsIgnoreCase("polearm")){
-            this.hAttackMod = 2.0;
-            this.aAttackMod = 1.5;
-            this.mAttackMod = 1.5;
+            this.healthCostMultiplier = 2.0;
+            this.actionCostMultiplier = 1.5;
+            this.mindCostMultiplier = 1.5;
         }
 
         this.healthSAC = healthCost;
@@ -35,29 +40,26 @@ public class Weapon {
         this.mindSAC = mindCost;
     }
 
-    public void sethAttackMod(double hAttackMod) {
-        this.hAttackMod = hAttackMod;
+    public void setHealthCostMultiplier(double healthCostMultiplier) {
+        this.healthCostMultiplier = healthCostMultiplier;
     }
 
-    public void setaAttackMod(double aAttackMod) {
-        this.aAttackMod = aAttackMod;
+    public void setActionCostMultiplier(double actionCostMultiplier) {
+        this.actionCostMultiplier = actionCostMultiplier;
     }
 
-    public void setmAttackMod(double mAttackMod) {
-        this.mAttackMod = mAttackMod;
+    public void setMindCostMultiplier(double mindCostMultiplier) {
+        this.mindCostMultiplier = mindCostMultiplier;
     }
 
-    public double gethAttackMod() {
+    public double getHealthCostMultiplier() {return healthCostMultiplier;}
 
-        return hAttackMod;
+    public double getActionCostMultiplier() {
+        return actionCostMultiplier;
     }
 
-    public double getaAttackMod() {
-        return aAttackMod;
-    }
-
-    public double getmAttackMod() {
-        return mAttackMod;
+    public double getMindCostMultiplier() {
+        return mindCostMultiplier;
     }
 
     public void setHealthSAC(int healthSAC) {

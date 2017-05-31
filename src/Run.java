@@ -4,7 +4,6 @@ import Gear.Weapon;
 import HAM.RegenerationTime;
 import HAM.StatMigration;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -36,20 +35,20 @@ public class Run {
 //        System.out.print("Willpower: ");int willpower = sc.nextInt();
 
         // Weapon Special Action Costs (SAC)
-        String weaponType = "pike";
-        int healthCost = 17;
-        int actionCost = 19;
-        int mindCost = 21;
+        String weaponType = "baton";
+        int healthCost = 81;
+        int actionCost = 11;
+        int mindCost = 5;
 
         // Armor Encumbrance
-        int healthEncumbrance = 130;
-        int actionEncumbrance = 40;
-        int mindEncumbrance = 95;
+        int healthEncumbrance = 220;
+        int actionEncumbrance = 0;
+        int mindEncumbrance = 210;
 
         // Food buff stat bonuses
-        int gruuvanShall = (430*2);
-        int accarragm = 430;
-        int brandy = 446;
+        int gruuvanShall = 430*3;
+        int accarragm = 410*2;
+        int brandy = 406*2;
 
         /***************************************************************************
          * The total of base stats (not including food buffs) should not exceed 5400
@@ -58,21 +57,21 @@ public class Run {
         /**
          * HEALTH
          */
-        int health = 400;
-        int strength = 700;
-        int constitution = 400;
+        int health = 1100;
+        int strength = 400;
+        int constitution = 500;
         /**
          * ACTION
          */
         int action = 400;
-        int quickness = 1000;
+        int quickness = 800;
         int stamina = 400;
         /**
          * MIND
          */
         int mind = 400;
-        int focus = 1000;
-        int willpower = 700;
+        int focus = 900;
+        int willpower = 400;
 
         int totalHAM = health + strength + constitution +
                 action + quickness + stamina +
@@ -92,14 +91,14 @@ public class Run {
         miniSuit.newArmorSuit(healthEncumbrance, actionEncumbrance, mindEncumbrance);
         stats.newStatMigration(strength + gruuvanShall, constitution, quickness + accarragm, stamina + accarragm, focus + brandy, willpower + brandy);
 
-        double healthSAC = specialAttackCost.getTotalSAC(weapon.getHealthSAC(), weapon.gethAttackMod(), stats.getStrength(), miniSuit.getHealthEncumbrance());
-        double actionSAC = specialAttackCost.getTotalSAC(weapon.getActionSAC(), weapon.getaAttackMod(), stats.getQuickness(), miniSuit.getActionEncumbrance());
-        double mindSAC = specialAttackCost.getTotalSAC(weapon.getMindSAC(), weapon.getmAttackMod(), stats.getFocus(), miniSuit.getMindEncumbrance());
+        double healthSAC = specialAttackCost.getTotalSAC(weapon.getHealthSAC(), weapon.getHealthCostMultiplier(), stats.getStrength(), miniSuit.getHealthEncumbrance());
+        double actionSAC = specialAttackCost.getTotalSAC(weapon.getActionSAC(), weapon.getActionCostMultiplier(), stats.getQuickness(), miniSuit.getActionEncumbrance());
+        double mindSAC = specialAttackCost.getTotalSAC(weapon.getMindSAC(), weapon.getMindCostMultiplier(), stats.getFocus(), miniSuit.getMindEncumbrance());
 
         RegenerationTime regenSpeed = new RegenerationTime();
-        double healthRegen = regenSpeed.timeToRegen(constitution);
-        double actionRegen = regenSpeed.timeToRegen(stamina);
-        double mindRegen = regenSpeed.timeToRegen(willpower);
+        double healthRegen = regenSpeed.timeToRegen(stats.getConstitution());
+        double actionRegen = regenSpeed.timeToRegen(stats.getStamina());
+        double mindRegen = regenSpeed.timeToRegen(stats.getWillpower());
 
         System.out.println();
         System.out.print("The total SAC per attack is:\n");
