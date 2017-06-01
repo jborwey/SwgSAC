@@ -5,15 +5,15 @@ package Gear;
  */
 public class Weapon {
 
-    private int healthSAC;
-    private int actionSAC;
-    private int mindSAC;
+    private double healthSAC;
+    private double actionSAC;
+    private double mindSAC;
     private double healthCostMultiplier;
     private double actionCostMultiplier;
     private double mindCostMultiplier;
 
 
-    public void newWeapon(String weaponType, int healthCost, int actionCost, int mindCost){
+    public void newWeapon(String weaponType, double healthCost, double actionCost, double mindCost){
         if(weaponType.equalsIgnoreCase("vk") || weaponType.equalsIgnoreCase("vibro knuckler")){
             this.healthCostMultiplier = 1.5;
             this.actionCostMultiplier = 1.5;
@@ -74,15 +74,15 @@ public class Weapon {
         this.mindSAC = mindSAC;
     }
 
-    public int getHealthSAC() {
+    public double getHealthSAC() {
         return healthSAC;
     }
 
-    public int getMindSAC() {
+    public double getMindSAC() {
         return mindSAC;
     }
 
-    public int getActionSAC() {
+    public double getActionSAC() {
         return actionSAC;
     }
 }
