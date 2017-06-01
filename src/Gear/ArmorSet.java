@@ -6,37 +6,37 @@ package Gear;
 public class ArmorSet {
 
 
-    private int healthEncumbrance;
-    private int actionEncumbrance;
-    private int mindEncumbrance;
+    private double healthEncumbrance;
+    private double actionEncumbrance;
+    private double mindEncumbrance;
 
-    public void newArmorSuit(int healthEncumbrance, int actionEncumbrance, int mindEncumbrance){
+    public ArmorSet(double healthEncumbrance, double actionEncumbrance, double mindEncumbrance){
         this.healthEncumbrance = healthEncumbrance;
         this.actionEncumbrance = actionEncumbrance;
         this.mindEncumbrance = mindEncumbrance;
     }
 
-    public int getHealthEncumbrance() {
+    public double getHealthEncumbrance() {
         return healthEncumbrance;
     }
 
-    public int getActionEncumbrance() {
+    public double getActionEncumbrance() {
         return actionEncumbrance;
     }
 
-    public int getMindEncumbrance() {
+    public double getMindEncumbrance() {
         return mindEncumbrance;
     }
 
-    public void setHealthEncumbrance(int healthEncumbrance) {
+    public void setHealthEncumbrance(double healthEncumbrance) {
         this.healthEncumbrance = healthEncumbrance;
     }
 
-    public void setActionEncumbrance(int actionEncumbrance) {
+    public void setActionEncumbrance(double actionEncumbrance) {
         this.actionEncumbrance = actionEncumbrance;
     }
 
-    public void setMindEncumbrance(int mindEncumbrance) {
+    public void setMindEncumbrance(double mindEncumbrance) {
         this.mindEncumbrance = mindEncumbrance;
     }
 }

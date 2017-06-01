@@ -16,7 +16,7 @@ public class RegenerationTime {
      * http://review.swgemu.com:8080/#/c/2598/1/MMOCoreORB/src/server/zone/objects/creature/CreatureObjectImplementation.cpp
      */
 
-    public double timeToRegen(int regenStat){
+    public double timeToRegen(double regenStat){
         return (regenStat * 13.0 / 1200.0 * 3.0)/3;
     }
 }

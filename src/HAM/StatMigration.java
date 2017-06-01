@@ -5,75 +5,109 @@ package HAM;
  */
 public class StatMigration {
 
-    /**
-     *
-     * SAC formula for special attacks is:
-     * BaseCost = (SAC * Attack SAC modifier)
-     *  BaseCost - ((((Efficiency stat - armor encumbrance)- 300) / 1200) * BaseCost)
-     */
+
+    //Health
+    private double health;
+    private double strength;
+    private double constitution;
+    //Action
+    private double action;
+    private double quickness;
+    private double stamina;
+    //Mind
+    private double mind;
+    private double focus;
+    private double willpower;
 
 
-    private int strength;
-    private int constitution;
-    private int quickness;
-    private int stamina;
-    private int focus;
-    private int willpower;
-
-    public void newStatMigration(int strength, int constitution, int quickness, int stamina, int focus, int willpower){
+        public StatMigration(double health, double strength, double constitution,
+                         double action, double quickness, double stamina,
+                         double mind, double focus, double willpower){
+        this.health = health;
         this.strength = strength;
         this.constitution = constitution;
+        this.action = action;
         this.quickness = quickness;
         this.stamina = stamina;
+        this.mind = mind;
         this.focus = focus;
         this.willpower = willpower;
     }
 
-    public void setStrength(int strength) {
+    public void setHealth(double health) {
+        this.health = health;
+    }
+
+    public void setStrength(double strength) {
         this.strength = strength;
     }
 
-    public void setConstitution(int constitution) {
+    public void setConstitution(double constitution) {
         this.constitution = constitution;
     }
 
-    public void setQuickness(int quickness) {
+    public void setAction(double action) {
+        this.action = action;
+    }
+
+    public void setQuickness(double quickness) {
         this.quickness = quickness;
     }
 
-    public void setStamina(int stamina) {
+    public void setStamina(double stamina) {
         this.stamina = stamina;
     }
 
-    public void setFocus(int focus) {
+    public void setMind(double mind) {
+        this.mind = mind;
+    }
+
+    public void setFocus(double focus) {
         this.focus = focus;
     }
 
-    public void setWillpower(int willpower) {
+    public void setWillpower(double willpower) {
         this.willpower = willpower;
     }
 
-    public int getStrength() {
+
+
+
+
+
+    public double getHealth() {
+        return health;
+    }
+
+    public double getStrength() {
         return strength;
     }
 
-    public int getConstitution() {
+    public double getConstitution() {
         return constitution;
     }
 
-    public int getQuickness() {
+    public double getAction() {
+        return action;
+    }
+
+    public double getQuickness() {
         return quickness;
     }
 
-    public int getStamina() {
+    public double getStamina() {
         return stamina;
     }
 
-    public int getFocus() {
+    public double getMind() {
+        return mind;
+    }
+
+    public double getFocus() {
         return focus;
     }
 
-    public int getWillpower() {
+    public double getWillpower() {
         return willpower;
     }
 }
