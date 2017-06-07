@@ -37,9 +37,9 @@ public class Run {
         // Weapon Special Action Costs (SAC)
         String weaponType = "hammer";
 
-        double healthCost = 81;
+        double healthCost = 44;
         double actionCost = 22;
-        double mindCost = 5;
+        double mindCost = 4;
 
         /***************************************************************************
          * The total of base stats (not including food buffs) should not exceed 5400
@@ -48,21 +48,21 @@ public class Run {
         /**
          * HEALTH
          */
-        double health = 1000;
-        double strength = 500;
-        double constitution = 700;
+        double health = 900;
+        double strength = 400;
+        double constitution = 400;
 
         /**
          * ACTION
          */
         double action = 400;
-        double quickness = 800;
+        double quickness = 1100;
         double stamina = 400;
         /**
          * MIND
          */
         double mind = 400;
-        double focus = 800;
+        double focus = 1000;
         double willpower = 400;
 
         StatMigration stats = new StatMigration(health, strength, constitution,
@@ -78,18 +78,20 @@ public class Run {
         System.out.printf("Total HAM is: %.0f \n", totalHAM);
 
         // Armor Encumbrance
-        double healthEncumbrance = 191;
-        double actionEncumbrance = 22;
+        double healthEncumbrance = 202;
+        double actionEncumbrance = 43;
         double mindEncumbrance = 232;
 
         ArmorSet armorSet = new ArmorSet(healthEncumbrance, actionEncumbrance, mindEncumbrance);
 
         // Food buff stat bonuses
-        double gruuvanShall = 430*3;
-        double accarragm = 367*2;
-        double brandy = 406*2;
+        double gruuvanShall = 430*2;
+        double wonWon = 0;
+        double accarragm = 367;
+        double brandy = 403;
 
-        stats.setStrength(strength + gruuvanShall);
+        stats.setStrength(strength + gruuvanShall + wonWon);
+        stats.setConstitution(constitution + wonWon);
         stats.setAction(action + accarragm);
         stats.setQuickness(quickness + accarragm);
         stats.setStamina(stamina + accarragm);
