@@ -35,6 +35,7 @@ public class Run {
 //
 
         // Weapon Special Action Costs (SAC)
+        // AFK Hammer SAC (unpup) 44-22-4
         String weaponType = "hammer";
 
         double healthCost = 44;
@@ -48,21 +49,21 @@ public class Run {
         /**
          * HEALTH
          */
-        double health = 900;
-        double strength = 400;
-        double constitution = 400;
+        double health = 800;
+        double strength = 850;
+        double constitution = 750;
 
         /**
          * ACTION
          */
         double action = 400;
-        double quickness = 1100;
+        double quickness = 1000;
         double stamina = 400;
         /**
          * MIND
          */
         double mind = 400;
-        double focus = 1000;
+        double focus = 400;
         double willpower = 400;
 
         StatMigration stats = new StatMigration(health, strength, constitution,
@@ -78,8 +79,8 @@ public class Run {
         System.out.printf("Total HAM is: %.0f \n", totalHAM);
 
         // Armor Encumbrance
-        double healthEncumbrance = 202;
-        double actionEncumbrance = 43;
+        double healthEncumbrance = 207;
+        double actionEncumbrance = 48;
         double mindEncumbrance = 232;
 
         ArmorSet armorSet = new ArmorSet(healthEncumbrance, actionEncumbrance, mindEncumbrance);
@@ -87,8 +88,8 @@ public class Run {
         // Food buff stat bonuses
         double gruuvanShall = 430*2;
         double wonWon = 0;
-        double accarragm = 367;
-        double brandy = 403;
+        double accarragm = 350;
+        double brandy = 329;
 
         stats.setStrength(strength + gruuvanShall + wonWon);
         stats.setConstitution(constitution + wonWon);
@@ -111,9 +112,9 @@ public class Run {
         double mindSAC = specialAttackCost.getTotalSAC(weapon.getMindSAC(), weapon.getMindCostMultiplier(), stats.getFocus(), armorSet.getMindEncumbrance());
 
         RegenerationTime regenSpeed = new RegenerationTime();
-        double healthRegen = regenSpeed.timeToRegen(stats.getConstitution());
-        double actionRegen = regenSpeed.timeToRegen(stats.getStamina());
-        double mindRegen = regenSpeed.timeToRegen(stats.getWillpower());
+        double healthRegen = regenSpeed.timeToRegen(stats.getConstitution(), armorSet.getHealthEncumbrance());
+        double actionRegen = regenSpeed.timeToRegen(stats.getStamina(), armorSet.getActionEncumbrance());
+        double mindRegen = regenSpeed.timeToRegen(stats.getWillpower(), armorSet.getMindEncumbrance());
 
         System.out.println();
         System.out.print("The total SAC per attack is:\n");
