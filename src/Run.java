@@ -36,6 +36,7 @@ public class Run {
 
         // Weapon Special Action Costs (SAC)
         // AFK Hammer SAC (unpup) 44-22-4
+        // High-End Acklay Hammer SAC 103-25-13
         String weaponType = "hammer";
 
         double healthCost = 44;
@@ -49,22 +50,22 @@ public class Run {
         /**
          * HEALTH
          */
-        double health = 800;
-        double strength = 850;
-        double constitution = 750;
+        double health = 400;
+        double strength = 400;
+        double constitution = 400;
 
         /**
          * ACTION
          */
         double action = 400;
-        double quickness = 1000;
+        double quickness = 400;
         double stamina = 400;
         /**
          * MIND
          */
-        double mind = 400;
-        double focus = 400;
-        double willpower = 400;
+        double mind = 1100;
+        double focus = 800;
+        double willpower = 1100;
 
         StatMigration stats = new StatMigration(health, strength, constitution,
                 action, quickness, stamina,
@@ -80,25 +81,42 @@ public class Run {
 
         // Armor Encumbrance
         double healthEncumbrance = 207;
-        double actionEncumbrance = 48;
-        double mindEncumbrance = 232;
+        double actionEncumbrance = 40;
+        double mindEncumbrance = 235;
 
         ArmorSet armorSet = new ArmorSet(healthEncumbrance, actionEncumbrance, mindEncumbrance);
 
-        // Food buff stat bonuses
-        double gruuvanShall = 430*2;
-        double wonWon = 0;
-        double accarragm = 350;
-        double brandy = 329;
+        /***************************************************************************
+         * stomach empty rate == 3.33/minute; Full to empty in 30 minutes
+         ***************************************************************************/
+        /***************************************************************************
+         * High-end mobs (NS Elders, Protectors, DJM, DJK and Krayts never miss)
+         * Use all stat enhancing food + citrus snow cake/protein wafer
+         ***************************************************************************/
 
-        stats.setStrength(strength + gruuvanShall + wonWon);
-        stats.setConstitution(constitution + wonWon);
-        stats.setAction(action + accarragm);
-        stats.setQuickness(quickness + accarragm);
-        stats.setStamina(stamina + accarragm);
+        // Food buff stat bonuses
+        double garmorrl = 0;
+        double gruuvanShall = 418*2;
+        double wonWon = 0;
+        double accarragm = 368*2;
+        double ahrisa = 0;
+        double brandy = 329*2;
+
+        double medicalEnhance = 586;
+
+        double healthWounds = 200;
+        double actionWounds = 140;
+        double mindWounds = 60;
+
+        stats.setHealth(health + garmorrl + medicalEnhance);
+        stats.setStrength(strength + gruuvanShall + wonWon + garmorrl + medicalEnhance - healthWounds - armorSet.getHealthEncumbrance());
+        stats.setConstitution(constitution + wonWon + garmorrl + medicalEnhance - healthWounds - armorSet.getHealthEncumbrance());
+        stats.setAction(action + accarragm + medicalEnhance);
+        stats.setQuickness(quickness + accarragm + medicalEnhance - actionWounds - armorSet.getActionEncumbrance());
+        stats.setStamina(stamina + accarragm + medicalEnhance - actionWounds - armorSet.getActionEncumbrance());
         stats.setMind(mind + brandy);
-        stats.setFocus(focus + brandy);
-        stats.setWillpower(willpower + brandy);
+        stats.setFocus(focus + brandy + ahrisa - mindWounds - armorSet.getMindEncumbrance());
+        stats.setWillpower(willpower + brandy - mindWounds - armorSet.getMindEncumbrance());
 
 
 
@@ -107,14 +125,14 @@ public class Run {
         SpecialAttackCost specialAttackCost = new SpecialAttackCost();
         weapon.newWeapon(weaponType, healthCost, actionCost, mindCost);
 
-        double healthSAC = specialAttackCost.getTotalSAC(weapon.getHealthSAC(), weapon.getHealthCostMultiplier(), stats.getStrength(), armorSet.getHealthEncumbrance());
-        double actionSAC = specialAttackCost.getTotalSAC(weapon.getActionSAC(), weapon.getActionCostMultiplier(), stats.getQuickness(), armorSet.getActionEncumbrance());
-        double mindSAC = specialAttackCost.getTotalSAC(weapon.getMindSAC(), weapon.getMindCostMultiplier(), stats.getFocus(), armorSet.getMindEncumbrance());
+        double healthSAC = specialAttackCost.getTotalSAC(weapon.getHealthSAC(), weapon.getHealthCostMultiplier(), stats.getStrength());
+        double actionSAC = specialAttackCost.getTotalSAC(weapon.getActionSAC(), weapon.getActionCostMultiplier(), stats.getQuickness());
+        double mindSAC = specialAttackCost.getTotalSAC(weapon.getMindSAC(), weapon.getMindCostMultiplier(), stats.getFocus());
 
         RegenerationTime regenSpeed = new RegenerationTime();
-        double healthRegen = regenSpeed.timeToRegen(stats.getConstitution(), armorSet.getHealthEncumbrance());
-        double actionRegen = regenSpeed.timeToRegen(stats.getStamina(), armorSet.getActionEncumbrance());
-        double mindRegen = regenSpeed.timeToRegen(stats.getWillpower(), armorSet.getMindEncumbrance());
+        double healthRegen = regenSpeed.timeToRegen(stats.getConstitution());
+        double actionRegen = regenSpeed.timeToRegen(stats.getStamina());
+        double mindRegen = regenSpeed.timeToRegen(stats.getWillpower());
 
         System.out.println();
         System.out.print("The total SAC per attack is:\n");

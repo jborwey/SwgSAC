@@ -10,11 +10,13 @@ public class SpecialAttackCost {
      * BaseCost = (SAC * Attack SAC modifier)
      *  BaseCost - ((((Efficiency stat - armor encumbrance)- 300) / 1200) * BaseCost)
      */
-    public double getTotalSAC(double SAC, double attackModifier, double efficiencyStat, double armorEncumbrance){
+    public double getTotalSAC(double SAC, double attackModifier, double efficiencyStat){
         double baseCost = SAC*attackModifier;
         //SAC is calculated after encumbrance
-        double totalSac = (((efficiencyStat - armorEncumbrance) - 300) / 1200) * baseCost;
+//        double totalSac = ((efficiencyStat - 300) / 1200) * baseCost;
+        double totalSac = baseCost * (1 - (efficiencyStat / 1500));
 
-        return (totalSac > baseCost) ? 0: baseCost - totalSac;
+//        return (totalSac > baseCost) ? 0: baseCost - totalSac;
+        return (totalSac < 0) ? 0: totalSac;
     }
 }
